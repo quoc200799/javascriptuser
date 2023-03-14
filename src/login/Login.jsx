@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,7 @@ import { getLogin } from './loginService';
 
 
 function Login() {
+    const [item,setItem]= useState({});
     const schema = yup.object({
         username: yup.string().required("Tên đăng nhập không đươc để trống"),
         password: yup.string().required("Mật khẩu không được để trống"),
@@ -22,11 +23,12 @@ function Login() {
                     console.log(res.response.message);
                 } else {
                     alert('Thành công');
+                    setItem=(res.data)
                     // Navigate(`userlist/`)
                 }
             })
-            .catch(e => {
-                console.log(e)
+            .catch(e => { 
+                alert(e.response?.data?.message)
             })
 
     };
@@ -66,7 +68,12 @@ function Login() {
                         <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
                     </form>
                 </div>
+<div>
+    <p>name: {item?.username}`</p>
+    <p>avata: {item?.avatar}`</p>
+    <p>email: {item?.email}`</p>
 
+</div>
             </div>
             {/* <!-- Pills content --> */}
         </div>

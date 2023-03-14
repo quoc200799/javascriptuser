@@ -9,6 +9,7 @@ import NotFound from './not-found/NotFound'
 import UserList from './user/UserList'
 import UserDetail from './user/UserDetail'
 import UserCreate from './user/UserCreate'
+import Login from './login/Login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,6 +32,7 @@ function App() {
         </li>
       </ul>
       <Routes>
+      <Route path='login' element={<Login />}></Route>
         <Route path="/userlist">
           <Route index element={<UserList />} />
           <Route path="demoeffect" element={<DemoUseEffect />} />
